@@ -13,7 +13,9 @@ export function App() {
 
   return (
     <div className="flex flex-col items-center gap-8">
-      <h1>Phantoms</h1>
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        Phantoms
+      </h1>
       <ul>
         {phantoms.map((phantom) => (
           <li key={phantom.id}>{phantom.name}</li>
