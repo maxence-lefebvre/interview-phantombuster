@@ -10,6 +10,8 @@ import {
 } from '@phantombuster/design-system/components';
 import { IPhantom } from '@phantombuster/phantoms/types';
 
+import { PhantomDataTableActions } from './cells/PhantomDataTableActions';
+
 const columnHelper = createColumnHelper<IPhantom>();
 
 export const columns = [
@@ -24,6 +26,22 @@ export const columns = [
         )}
       </CopyButton>
     ),
+  }),
+  columnHelper.accessor('script', {
+    header: 'script',
+    cell: ({ getValue }) => {
+      const value = getValue();
+
+      return (
+        <CopyButton value={value}>
+          {({ copied, copy }) => (
+            <UnstyledButton onClick={copy}>
+              {copied ? 'value copied to clipboard' : value}
+            </UnstyledButton>
+          )}
+        </CopyButton>
+      );
+    },
   }),
   columnHelper.display({
     id: 'nextLaunchIn',
@@ -51,5 +69,10 @@ export const columns = [
     id: 'categories',
     header: 'categories',
     cell: ({ row }) => row.original.manifest.tags.categories.join(', '),
+  }),
+  columnHelper.display({
+    id: 'actions',
+    header: '',
+    cell: ({ row }) => <PhantomDataTableActions row={row} />,
   }),
 ];
