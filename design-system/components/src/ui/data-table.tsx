@@ -4,6 +4,9 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { HTMLAttributes } from 'react';
+
+import { cn } from '@phantombuster/design-system/core';
 
 import {
   Table,
@@ -14,7 +17,7 @@ import {
   TableRow,
 } from './table';
 
-interface DataTableProps<TData, TValue> {
+interface DataTableProps<TData, TValue> extends HTMLAttributes<HTMLDivElement> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   noDataMessage?: string;
@@ -24,6 +27,8 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   noDataMessage = 'No data',
+  className,
+  ...props
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -32,7 +37,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border">
+    <div className={cn('rounded-md border', className)} {...props}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

@@ -10,6 +10,8 @@ import {
 } from '@phantombuster/design-system/components';
 import { IPhantom } from '@phantombuster/phantoms/types';
 
+import { DeletePhantomMenuItem } from './menu-items/DeletePhantomMenuItem';
+
 export type PhantomDataTableActionsProps = {
   row: Row<IPhantom>;
 };
@@ -31,7 +33,7 @@ export const PhantomDataTableActions = ({
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>Rename</DropdownMenuItem>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Delete</DropdownMenuItem>
+        <DeletePhantomMenuItem phantom={row.original} />
       </DropdownMenuContent>
     </DropdownMenu>
   );
