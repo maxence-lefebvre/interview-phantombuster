@@ -16,7 +16,8 @@
           "mode": "development"
         },
         "production": {
-          "mode": "production"
+          "mode": "production",
+          "base": "/interview-phantombuster/"
         }
       }
     },
@@ -70,6 +71,16 @@
       "options": {
         "buildTarget": "phantombuster:build"
       }
+    },
+    "deploy": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "gh-pages -d dist/phantombuster -m \"chore: deploy latest updates\""
+        ]
+      },
+      "defaultConfiguration": "production"
     }
   },
   "tags": []
