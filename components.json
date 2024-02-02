@@ -11,7 +11,7 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@phantombuster/design-system/components",
+    "components": "@phantombuster-shadcn/design-system/components",
     "utils": "@phantombuster/design-system/core"
   }
 }

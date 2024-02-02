@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { PhantomCard } from '@phantombuster/phantoms/components';
 import { IPhantom } from '@phantombuster/phantoms/types';
 
 export function App() {
@@ -14,13 +15,13 @@ export function App() {
   return (
     <div className="flex flex-col items-center gap-8">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-        Phantoms
+        Dashboard
       </h1>
-      <ul>
+      <section className="grid grid-flow-row-dense grid-cols-3 gap-8">
         {phantoms.map((phantom) => (
-          <li key={phantom.id}>{phantom.name}</li>
+          <PhantomCard key={phantom.id} phantom={phantom} />
         ))}
-      </ul>
+      </section>
     </div>
   );
 }

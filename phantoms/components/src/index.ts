@@ -1,1 +1,1 @@
-export * from './lib/phantoms-components';
+export * from './lib/PhantomCard';
