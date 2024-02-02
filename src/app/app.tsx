@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { IPhantom } from '@phantombuster/phantoms/types';
 import { useEffect, useState } from 'react';
+
+import { IPhantom } from '@phantombuster/phantoms/types';
 
 const StyledApp = styled.div`
   display: flex;
@@ -29,5 +30,3 @@ export function App() {
     </StyledApp>
   );
 }
-
-export default App;

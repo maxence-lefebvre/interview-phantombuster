@@ -14,5 +14,3 @@ export function PhantomsComponents(props: PhantomsComponentsProps) {
     </StyledPhantomsComponents>
   );
 }
-
-export default PhantomsComponents;

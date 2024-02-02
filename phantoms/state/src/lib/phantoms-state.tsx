@@ -14,5 +14,3 @@ export function PhantomsState(props: PhantomsStateProps) {
     </StyledPhantomsState>
   );
 }
-
-export default PhantomsState;

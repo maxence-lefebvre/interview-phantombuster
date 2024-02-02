@@ -1,6 +1,8 @@
 import { createServer, Model } from 'miragejs';
-import { phantomsSeed } from './data/seeds/phantoms';
+
 import { IPhantom } from '@phantombuster/phantoms/types';
+
+import { phantomsSeed } from './data/seeds/phantoms';
 
 export const mockServer = ({ environment = 'development' } = {}) => {
   return createServer({

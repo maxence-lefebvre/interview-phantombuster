@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import PhantomsState from './phantoms-state';
+import { PhantomsState } from './phantoms-state';
 
 describe('PhantomsState', () => {
   it('should render successfully', () => {
