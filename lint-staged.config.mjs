@@ -1,4 +1,4 @@
 export default {
-  '*.ts': ['nx affected:lint --fix --files'],
+  '*.{ts,tsx}': ['nx affected:lint --fix --files'],
   '*': ['npx nx format:write --files'],
 };
