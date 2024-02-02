@@ -1,9 +1,13 @@
+import { HTMLAttributes } from 'react';
+
 import { DataTable } from '@phantombuster/design-system/components';
 import { usePhantoms } from '@phantombuster/phantoms/state';
 
 import { columns } from './columns';
 
-export const PhantomDataTable = () => {
+export const PhantomDataTable = ({
+  ...props
+}: HTMLAttributes<HTMLDivElement>) => {
   const { data: phantoms, isLoading } = usePhantoms();
 
   if (isLoading || !phantoms) {
@@ -12,6 +16,11 @@ export const PhantomDataTable = () => {
   }
 
   return (
-    <DataTable columns={columns} data={phantoms} noDataMessage="No phantoms." />
+    <DataTable
+      columns={columns}
+      data={phantoms}
+      noDataMessage="No phantoms."
+      {...props}
+    />
   );
 };

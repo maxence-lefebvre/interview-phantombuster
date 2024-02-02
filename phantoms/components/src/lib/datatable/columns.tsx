@@ -43,6 +43,17 @@ export const columns = [
       );
     },
   }),
+  columnHelper.accessor('launchType', {
+    header: 'Launch type',
+    // TODO: add fake "launch now" button
+  }),
+  columnHelper.display({
+    id: 'launchFrequency',
+    header: 'Frequency',
+    cell: ({ row }) => {
+      return row.original.repeatedLaunchTimes?.simplePreset ?? null;
+    },
+  }),
   columnHelper.display({
     id: 'nextLaunchIn',
     header: 'Next Launch',

@@ -11,12 +11,10 @@ export const DashboardPage = () => {
       <div className="border-b">
         <Navbar />
       </div>
-      <div className="flex-1 space-y-4 p-8 pt-6">
-        <div className="flex items-center justify-between space-y-2">
+      <div className="flex flex-1 flex-col gap-12 p-12">
+        <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-          <div className="flex items-center space-x-2">
-            <PhantomCount />
-          </div>
+          <PhantomCount />
         </div>
         <PhantomDataTable />
       </div>
