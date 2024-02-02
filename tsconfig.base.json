@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@phantombuster/design-system/components": [
-        "design-system/components/src/index.ts"
+        "design-system/components/src/*"
       ],
       "@phantombuster/design-system/core": ["design-system/core/src/index.ts"],
       "@phantombuster/phantoms/components": [
