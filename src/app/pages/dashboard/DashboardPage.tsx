@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react';
-
-import { PhantomCard } from '@phantombuster/phantoms/components';
-import { IPhantom } from '@phantombuster/phantoms/types';
+import { Skeleton } from '@phantombuster/design-system/components';
+import { PhantomCard, PhantomCount } from '@phantombuster/phantoms/components';
+import { usePhantoms } from '@phantombuster/phantoms/state';
 
 import { Navbar } from './components/Navbar';
 
 export const DashboardPage = () => {
-  const [phantoms, setPhantoms] = useState<IPhantom[]>([]);
-
-  useEffect(() => {
-    fetch('/api/phantoms')
-      .then((response) => response.json())
-      .then((data) => setPhantoms(data.phantoms));
-  }, []);
+  const { data: phantoms, isLoading } = usePhantoms();
 
   return (
     <div className="flex flex-col">
@@ -23,21 +16,19 @@ export const DashboardPage = () => {
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
           <div className="flex items-center space-x-2">
-            {phantoms.length > 0 ? (
-              <span className="text-sm font-medium text-gray-500">
-                {phantoms.length} phantoms
-              </span>
-            ) : (
-              <span className="text-sm font-medium text-gray-500">
-                Start with your first Phantom!
-              </span>
-            )}
+            <PhantomCount />
           </div>
         </div>
         <section className="grid grid-flow-row-dense grid-cols-3 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {phantoms.map((phantom) => (
-            <PhantomCard key={phantom.id} phantom={phantom} />
-          ))}
+          {isLoading &&
+            [0, 1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="h-[155px] w-[290px] rounded-xl" />
+            ))}
+          {!isLoading &&
+            !!phantoms &&
+            phantoms.map((phantom) => (
+              <PhantomCard key={phantom.id} phantom={phantom} />
+            ))}
         </section>
       </div>
     </div>

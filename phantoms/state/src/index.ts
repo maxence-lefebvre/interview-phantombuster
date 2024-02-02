@@ -1,1 +1,1 @@
-export * from './lib/phantoms-state';
+export * from './lib/queries';
