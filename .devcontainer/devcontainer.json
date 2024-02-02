@@ -1,0 +1,5 @@
+{
+  // A minimal configuration allowing the container to be created and started
+  "name": "phantombuster",
+  "image": "ubuntu" // Change to your own image name
+}
