@@ -1,6 +1,11 @@
 import { HTMLAttributes } from 'react';
 
-import { DataTable } from '@phantombuster/design-system/components';
+import {
+  DataTable,
+  DataTableFilter,
+  DataTablePagination,
+  useDataTable,
+} from '@phantombuster/design-system/components';
 import {
   useIsFetchingPhantoms,
   usePhantoms,
@@ -14,12 +19,24 @@ export const PhantomDataTable = ({
   const { data: phantoms } = usePhantoms();
   const isFetchingPhantoms = useIsFetchingPhantoms();
 
+  const table = useDataTable({
+    columns,
+    data: phantoms ?? [],
+  });
+
   return (
     <DataTable
+      table={table}
       isLoading={isFetchingPhantoms}
-      columns={columns}
-      data={phantoms ?? []}
       noDataMessage="No phantoms."
+      dataTableFilter={
+        <DataTableFilter
+          placeholder="Search phantoms..."
+          table={table}
+          columnId="name"
+        />
+      }
+      dataTablePagination={<DataTablePagination table={table} />}
       {...props}
     />
   );
