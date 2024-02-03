@@ -22,6 +22,7 @@
         "design-system/components/src/index.ts"
       ],
       "@phantombuster/design-system/core": ["design-system/core/src/index.ts"],
+      "@phantombuster/kernel/mock-server": ["kernel/mock-server/src/index.ts"],
       "@phantombuster/phantoms/components": [
         "phantoms/components/src/index.ts"
       ],
