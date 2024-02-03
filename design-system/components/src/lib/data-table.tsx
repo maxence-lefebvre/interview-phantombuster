@@ -32,7 +32,7 @@ export function DataTable<TData>({
 }: DataTableProps<TData>) {
   return (
     <div>
-      <div className="flex items-center py-4">{dataTableFilter}</div>
+      {dataTableFilter}
       <div className={cn('rounded-md border', className)} {...props}>
         <Table>
           <TableHeader>

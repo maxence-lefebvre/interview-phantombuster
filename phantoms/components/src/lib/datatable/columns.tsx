@@ -59,7 +59,11 @@ export const columns = [
   columnHelper.display({
     id: 'categories',
     header: 'categories',
-    cell: ({ row }) => row.original.manifest.tags.categories.join(', '),
+    enableColumnFilter: true,
+    filterFn: (row, _, filterValue) => {
+      return row.original.manifest.tags.categories.includes(filterValue);
+    },
+    cell: ({ row }) => row.original.manifest.tags.categories.join(' '),
   }),
   columnHelper.display({
     id: 'actions',

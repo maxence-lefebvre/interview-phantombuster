@@ -11,6 +11,7 @@ import {
   usePhantoms,
 } from '@phantombuster/phantoms/state';
 
+import { CategoriesSelectFilter } from './categories/CategoriesSelectFilter';
 import { columns } from './columns';
 
 export const PhantomDataTable = ({
@@ -30,11 +31,14 @@ export const PhantomDataTable = ({
       isLoading={isFetchingPhantoms}
       noDataMessage="No phantoms."
       dataTableFilter={
-        <DataTableFilter
-          placeholder="Search phantoms..."
-          table={table}
-          columnId="name"
-        />
+        <div className="flex items-center justify-between py-4">
+          <DataTableFilter
+            placeholder="Search phantoms..."
+            table={table}
+            columnId="name"
+          />
+          <CategoriesSelectFilter table={table} columnId="categories" />
+        </div>
       }
       dataTablePagination={<DataTablePagination table={table} />}
       {...props}

@@ -26,6 +26,24 @@ export const usePhantoms = () => {
   });
 };
 
+export const usePhantomCategories = () => {
+  const phantomsQuery = usePhantoms();
+
+  if (!phantomsQuery.data) {
+    return {
+      ...phantomsQuery,
+      data: new Set<string>(),
+    };
+  }
+
+  return {
+    ...phantomsQuery,
+    data: new Set(
+      phantomsQuery.data.flatMap((phantom) => phantom.manifest.tags.categories)
+    ),
+  };
+};
+
 export const useIsFetchingPhantoms = () => {
   return (
     useIsFetching({
