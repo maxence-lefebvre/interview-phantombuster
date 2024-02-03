@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useIsFetching,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 import { IPhantom } from '@phantombuster/phantoms/types';
 
@@ -15,6 +20,14 @@ export const usePhantoms = () => {
         .then((data) => data.phantoms as IPhantom[]);
     },
   });
+};
+
+export const useIsFetchingPhantoms = () => {
+  return (
+    useIsFetching({
+      queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
+    }) > 0
+  );
 };
 
 export const useDuplicatePhantomMutation = () => {
