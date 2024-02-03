@@ -3,6 +3,7 @@ import { HTMLAttributes, useCallback } from 'react';
 
 import {
   DataTable,
+  DataTableColumnVisibility,
   DataTableFilter,
   DataTablePagination,
   useDataTable,
@@ -58,11 +59,14 @@ export const PhantomDataTable = ({
             table={table}
             columnId="name"
           />
-          <CategoriesSelectFilter
-            table={table}
-            columnId="categories"
-            onChangeFilter={onChangeCategoryFilter}
-          />
+          <div className="flex flex-col gap-4 md:flex-row md:items-center">
+            <DataTableColumnVisibility table={table} />
+            <CategoriesSelectFilter
+              table={table}
+              columnId="categories"
+              onChangeFilter={onChangeCategoryFilter}
+            />
+          </div>
         </div>
       }
       dataTablePagination={<DataTablePagination table={table} />}

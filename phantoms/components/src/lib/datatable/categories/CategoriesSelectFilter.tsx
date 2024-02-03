@@ -59,7 +59,7 @@ export function CategoriesSelectFilter<TData>({
         <SelectContent>
           {Array.from(categories.values()).map((category) => (
             <SelectItem key={category} value={category}>
-              {category}
+              <span className="capitalize">{category}</span>
             </SelectItem>
           ))}
         </SelectContent>

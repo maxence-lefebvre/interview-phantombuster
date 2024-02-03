@@ -24,13 +24,20 @@ export const columns = [
         to={`/phantoms/${row.original.id}`}
         className="flex items-center gap-4"
       >
-        <ExternalLinkIcon className="size-4" />
+        <ExternalLinkIcon className="size-4 flex-none" />
         {getValue()}
       </Link>
     ),
   }),
+  columnHelper.accessor('script', {
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Script" />
+    ),
+  }),
   columnHelper.accessor('launchType', {
-    header: 'Launch type',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Launch Type" />
+    ),
     cell: ({ getValue }) => (
       <span className="flex items-center gap-4">
         <Button variant="outline" size="icon" title="Launch now!">
