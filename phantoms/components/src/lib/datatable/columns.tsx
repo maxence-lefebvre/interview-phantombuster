@@ -1,13 +1,10 @@
+import { ExternalLinkIcon } from '@radix-ui/react-icons';
 import { createColumnHelper } from '@tanstack/react-table';
-import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 import {
   Countdown,
   DataTableColumnHeader,
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
 } from '@phantombuster/design-system/components';
 import { getNextLaunchDate, IPhantom } from '@phantombuster/phantoms/types';
 
@@ -20,10 +17,17 @@ export const columns = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />
     ),
+    cell: ({ row, getValue }) => (
+      <Link
+        target="_blank"
+        to={`/phantoms/${row.original.id}`}
+        className="flex items-center gap-4"
+      >
+        <ExternalLinkIcon className="size-4" />
+        {getValue()}
+      </Link>
+    ),
   }),
-  // columnHelper.accessor('script', {
-  //   header: 'script',
-  // }),
   columnHelper.accessor('launchType', {
     header: 'Launch type',
     // TODO: add fake "launch now" button
@@ -41,16 +45,7 @@ export const columns = [
     cell: ({ row }) => {
       const nextLaunch = getNextLaunchDate(row.original.nextLaunchIn);
 
-      return nextLaunch ? (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <Countdown targetDate={nextLaunch} />
-            </TooltipTrigger>
-            <TooltipContent>{format(nextLaunch, 'Pp')}</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      ) : null;
+      return nextLaunch ? <Countdown targetDate={nextLaunch} /> : null;
     },
   }),
   columnHelper.display({

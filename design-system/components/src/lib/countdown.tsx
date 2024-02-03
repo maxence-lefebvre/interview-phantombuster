@@ -1,3 +1,12 @@
+import { format } from 'date-fns';
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip';
+
 import { useCountdown } from './countdown/use-countdown';
 
 export type CountdownProps = {
@@ -16,5 +25,14 @@ export const Countdown = ({ targetDate }: CountdownProps) => {
     .filter(Boolean)
     .join(' ');
 
-  return <span>{countdown}</span>;
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <span>{countdown}</span>
+        </TooltipTrigger>
+        <TooltipContent>{format(targetDate, 'Pp')}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
 };

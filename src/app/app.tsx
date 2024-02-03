@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { DefaultErrorPage } from './layout/DefaultErrorPage';
 import { RootLayout } from './layout/RootLayout';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
+import { PhantomDetailsPage } from './pages/phantoms/PhantomDetailsPage';
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,9 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <DashboardPage /> },
       { path: '/dashboard', element: <DashboardPage /> },
+      { path: '/linkedin-leads', element: <DashboardPage /> },
+      { path: '/solutions', element: <DashboardPage /> },
+      { path: '/phantoms/:id', element: <PhantomDetailsPage /> },
     ],
   },
 ]);
