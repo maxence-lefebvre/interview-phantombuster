@@ -31,7 +31,7 @@ export function DataTable<TData>({
   ...props
 }: DataTableProps<TData>) {
   return (
-    <div>
+    <div className="flex flex-col gap-4 py-4">
       {dataTableFilter}
       <div className={cn('rounded-md border', className)} {...props}>
         <Table>

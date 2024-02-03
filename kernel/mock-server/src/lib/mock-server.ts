@@ -72,7 +72,9 @@ export const mockServer = ({ environment = 'development' } = {}) => {
         localStorage.removeItem(MIRAGE_DB_CACHE_KEY);
         schema.db.emptyData();
 
-        this.seeds(this);
+        phantomsSeed.forEach((phantom) => {
+          schema.create('phantom', phantom);
+        });
 
         return new Response(200);
       });
