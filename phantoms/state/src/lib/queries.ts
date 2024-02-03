@@ -11,6 +11,10 @@ export const PHANTOMS_QUERY_KEYS = {
   PHANTOMS: 'phantoms',
 };
 
+const handleInvalidateQueryError = (error: Error) => {
+  console.error('Error invalidating query', error);
+};
+
 export const usePhantoms = () => {
   return useQuery({
     queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
@@ -30,6 +34,30 @@ export const useIsFetchingPhantoms = () => {
   );
 };
 
+export const useRenamePhantomMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
+    mutationFn: async ({ id, name }: { id: string; name: string }) => {
+      return fetch(`/api/phantoms/${encodeURI(id)}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name }),
+      });
+    },
+    onSuccess: () => {
+      queryClient
+        .invalidateQueries({
+          queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
+        })
+        .catch(handleInvalidateQueryError);
+    },
+  });
+};
+
 export const useDuplicatePhantomMutation = () => {
   const queryClient = useQueryClient();
 
@@ -45,7 +73,7 @@ export const useDuplicatePhantomMutation = () => {
         .invalidateQueries({
           queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
         })
-        .catch((error) => console.error('Error invalidating query', error));
+        .catch(handleInvalidateQueryError);
     },
   });
 };
@@ -65,7 +93,7 @@ export const useDeletePhantomMutation = () => {
         .invalidateQueries({
           queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
         })
-        .catch((error) => console.error('Error invalidating query', error));
+        .catch(handleInvalidateQueryError);
     },
   });
 };

@@ -37,9 +37,21 @@ export const mockServer = ({ environment = 'development' } = {}) => {
       this.namespace = 'api';
 
       this.get('/phantoms');
-
-      this.patch('/phantoms/:id/name');
       this.delete('/phantoms/:id');
+
+      this.patch('/phantoms/:id', (schema, request) => {
+        const original = schema.findBy('phantom', { id: request.params.id });
+
+        if (!original) {
+          return new Response(400);
+        }
+
+        original.update({
+          name: JSON.parse(request.requestBody).name,
+        });
+
+        return new Response(200);
+      });
 
       this.post('/phantoms/:id/duplicate', (schema, request) => {
         const original = schema.findBy('phantom', { id: request.params.id });
