@@ -5,12 +5,6 @@ import { z } from 'zod';
 
 import {
   Button,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
   Form,
   FormControl,
   FormDescription,
@@ -19,6 +13,12 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
 } from '@phantombuster/design-system/components';
 import { useRenamePhantomMutation } from '@phantombuster/phantoms/state';
 import { IPhantom } from '@phantombuster/phantoms/types';
@@ -29,13 +29,13 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export type RenamePhantomDialogContentProps = {
+export type RenamePhantomSheetContentProps = {
   phantom: Pick<IPhantom, 'id' | 'name'>;
 };
 
-export const RenamePhantomDialogContent = ({
+export const RenamePhantomSheetContent = ({
   phantom,
-}: RenamePhantomDialogContentProps) => {
+}: RenamePhantomSheetContentProps) => {
   const { mutate } = useRenamePhantomMutation();
 
   const renamePhantomForm = useForm<FormSchema>({
@@ -53,20 +53,20 @@ export const RenamePhantomDialogContent = ({
   );
 
   return (
-    <DialogContent>
+    <SheetContent className="w-full max-w-full md:w-1/2">
       <Form {...renamePhantomForm}>
         <form
           onSubmit={renamePhantomForm.handleSubmit(onSubmit)}
           className="space-y-8"
         >
-          <DialogHeader>
-            <DialogTitle>Rename phantom</DialogTitle>
-            <DialogDescription>
+          <SheetHeader>
+            <SheetTitle>Rename phantom</SheetTitle>
+            <SheetDescription>
               Choose a new name for your phantom.
               <br />
               Click save when you are done.
-            </DialogDescription>
-          </DialogHeader>
+            </SheetDescription>
+          </SheetHeader>
           <div className="grid gap-4 py-4">
             <FormField
               control={renamePhantomForm.control}
@@ -90,13 +90,16 @@ export const RenamePhantomDialogContent = ({
               )}
             />
           </div>
-          <DialogFooter>
-            <DialogClose asChild>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button variant="secondary">Cancel</Button>
+            </SheetClose>
+            <SheetClose asChild>
               <Button type="submit">Save changes</Button>
-            </DialogClose>
-          </DialogFooter>
+            </SheetClose>
+          </SheetFooter>
         </form>
       </Form>
-    </DialogContent>
+    </SheetContent>
   );
 };

@@ -3,17 +3,17 @@ import { Row } from '@tanstack/react-table';
 
 import {
   Button,
-  Dialog,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
+  Sheet,
 } from '@phantombuster/design-system/components';
 import { IPhantom } from '@phantombuster/phantoms/types';
 
 import { CopyPhantomIdMenuItem } from './menu-items/CopyPhantomIdMenuItem';
 import { DeletePhantomMenuItem } from './menu-items/DeletePhantomMenuItem';
 import { DuplicatePhantomMenuItem } from './menu-items/DuplicatePhantomMenuItem';
-import { RenamePhantomDialogContent } from './menu-items/rename-phantom/RenamePhantomDialogContent';
+import { RenamePhantomSheetContent } from './menu-items/rename-phantom/RenamePhantomDialogContent';
 import { RenamePhantomMenuItem } from './menu-items/RenamePhantomMenuItem';
 
 export type PhantomDataTableActionsProps = {
@@ -24,7 +24,7 @@ export const PhantomDataTableActions = ({
   row,
 }: PhantomDataTableActionsProps) => {
   return (
-    <Dialog>
+    <Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -42,7 +42,7 @@ export const PhantomDataTableActions = ({
           <DeletePhantomMenuItem phantom={row.original} />
         </DropdownMenuContent>
       </DropdownMenu>
-      <RenamePhantomDialogContent phantom={row.original} />
-    </Dialog>
+      <RenamePhantomSheetContent phantom={row.original} />
+    </Sheet>
   );
 };
