@@ -61,7 +61,18 @@ export function DataTable<TData, TValue>({
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {isLoading ? (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="py-4">
+                {/*
+                 * FIXME: Skeleton makes it look like we are adding a row when deleting one also...
+                 * Progress may be better
+                 * Use XState to manage this
+                 */}
+                <Skeleton className="h-4 w-[250px]" />
+              </TableCell>
+            </TableRow>
+          ) : table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
@@ -76,21 +87,7 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              {!isLoading && (
-                <TableCell colSpan={columns.length}>{noDataMessage}</TableCell>
-              )}
-            </TableRow>
-          )}
-          {!!isLoading && (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="py-4">
-                {/*
-                 * FIXME: Skeleton makes it look like we are adding a row when deleting one also...
-                 * Progress may be better
-                 * Use XState to manage this
-                 */}
-                <Skeleton className="h-4 w-[250px]" />
-              </TableCell>
+              <TableCell colSpan={columns.length}>{noDataMessage}</TableCell>
             </TableRow>
           )}
         </TableBody>
