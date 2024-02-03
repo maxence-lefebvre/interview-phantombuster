@@ -17,20 +17,23 @@ export type CategoriesSelectFilterProps<TData> = {
   table: Table<TData>;
   columnId: string;
   placeholder?: string;
+  onChangeFilter?: (value?: string | null) => void;
 };
 
 export function CategoriesSelectFilter<TData>({
   table,
   columnId = 'categories',
   placeholder = 'Select a category...',
+  onChangeFilter,
 }: CategoriesSelectFilterProps<TData>) {
   const { data: categories, isLoading } = usePhantomCategories();
 
   const onSelectValueChange = useCallback(
     (nextValue?: string | null) => {
       table.getColumn(columnId)?.setFilterValue(nextValue ?? '');
+      onChangeFilter?.(nextValue);
     },
-    [table, columnId]
+    [table, columnId, onChangeFilter]
   );
 
   const onClickClear = useCallback(() => {
