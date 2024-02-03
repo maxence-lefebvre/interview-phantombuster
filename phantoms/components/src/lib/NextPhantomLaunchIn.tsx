@@ -1,4 +1,4 @@
-import { Countdown } from '@phantombuster/design-system/components';
+import { Countdown, Skeleton } from '@phantombuster/design-system/components';
 import { usePhantoms } from '@phantombuster/phantoms/state';
 import { getNextLaunchDate } from '@phantombuster/phantoms/types';
 
@@ -6,9 +6,7 @@ export const NextPhantomLaunchIn = () => {
   const { data: phantoms, isLoading } = usePhantoms();
 
   if (isLoading || !phantoms) {
-    return (
-      <span className="text-sm font-medium text-gray-500">Loading...</span>
-    );
+    return <Skeleton className="h-4 w-[250px]" />;
   }
 
   const nextLaunchIn = Math.min(
