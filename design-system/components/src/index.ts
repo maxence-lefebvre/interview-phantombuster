@@ -7,6 +7,7 @@ export * from './lib/data-table/data-table-pagination';
 export * from './lib/data-table/use-data-table';
 export * from './lib/countdown';
 export * from './lib/data-table';
+export * from './lib/unstyled-button';
 
 export * from './ui/avatar';
 export * from './ui/button';
