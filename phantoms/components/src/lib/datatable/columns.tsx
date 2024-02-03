@@ -1,8 +1,9 @@
-import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import { ExternalLinkIcon, PlayIcon } from '@radix-ui/react-icons';
 import { createColumnHelper } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 
 import {
+  Button,
   Countdown,
   DataTableColumnHeader,
 } from '@phantombuster/design-system/components';
@@ -30,7 +31,14 @@ export const columns = [
   }),
   columnHelper.accessor('launchType', {
     header: 'Launch type',
-    // TODO: add fake "launch now" button
+    cell: ({ getValue }) => (
+      <span className="flex items-center gap-4">
+        <Button variant="outline" size="icon" title="Launch now!">
+          <PlayIcon className="size-4" />
+        </Button>
+        {getValue()}
+      </span>
+    ),
   }),
   columnHelper.display({
     id: 'launchFrequency',
