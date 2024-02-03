@@ -2,6 +2,7 @@ import '@total-typescript/ts-reset';
 
 export * from './lib/countdown/use-countdown';
 export * from './lib/data-table/data-table-column-header';
+export * from './lib/data-table/data-table-column-visibility';
 export * from './lib/data-table/data-table-filter';
 export * from './lib/data-table/data-table-pagination';
 export * from './lib/data-table/use-data-table';
