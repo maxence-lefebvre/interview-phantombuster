@@ -15,12 +15,12 @@ payload to use as an example in the attachments.
 
 The page must contain:
 
-- The list of Phantoms with at least:
+\_- The list of Phantoms with at least:
 
-  - Name of the Phantom
-  - A drop-down menu with options “rename,” “duplicate,” and “delete”
-  - Launch frequency
-  - Time remaining before the next auto-launch
+- Name of the Phantom
+- A drop-down menu with options “rename,” “duplicate,” and “delete”
+- Launch frequency
+- Time remaining before the next auto-launch
 
 - Categories filter
 
@@ -33,7 +33,7 @@ The page must contain:
 - A countdown of the time remaining before the next auto-launch
 - Anything else that comes to your mind that would improve the project
 
-# Technical requirements
+#\_ Technical requirements
 
 - Code in complete strict TypeScript (strict null checks, no any, ...)
 - Use https://tailwindcss.com/ for all styles
