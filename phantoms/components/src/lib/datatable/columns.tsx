@@ -2,6 +2,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { addSeconds, format, formatDistanceToNow } from 'date-fns';
 
 import {
+  DataTableColumnHeader,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -15,11 +16,13 @@ const columnHelper = createColumnHelper<IPhantom>();
 
 export const columns = [
   columnHelper.accessor('name', {
-    header: 'name',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Name" />
+    ),
   }),
-  columnHelper.accessor('script', {
-    header: 'script',
-  }),
+  // columnHelper.accessor('script', {
+  //   header: 'script',
+  // }),
   columnHelper.accessor('launchType', {
     header: 'Launch type',
     // TODO: add fake "launch now" button
