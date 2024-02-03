@@ -37,6 +37,8 @@ export const mockServer = ({ environment = 'development' } = {}) => {
       this.namespace = 'api';
 
       this.get('/phantoms');
+      // eslint-disable-next-line sonarjs/no-duplicate-string -- Easier to read
+      this.get('/phantoms/:id');
       this.delete('/phantoms/:id');
 
       this.patch('/phantoms/:id', (schema, request) => {
@@ -46,8 +48,15 @@ export const mockServer = ({ environment = 'development' } = {}) => {
           return new Response(400);
         }
 
+        const name = (JSON.parse(request.requestBody) as { name?: string })
+          .name;
+
+        if (!name) {
+          return new Response(400);
+        }
+
         original.update({
-          name: JSON.parse(request.requestBody).name,
+          name,
         });
 
         return new Response(200);

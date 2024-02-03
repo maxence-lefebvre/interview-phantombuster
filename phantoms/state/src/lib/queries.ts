@@ -20,8 +20,21 @@ export const usePhantoms = () => {
     queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
     queryFn: async () => {
       return fetch('/api/phantoms')
-        .then((response) => response.json())
-        .then((data) => data.phantoms as IPhantom[]);
+        .then(
+          (response) => response.json() as Promise<{ phantoms: IPhantom[] }>
+        )
+        .then((data) => data.phantoms);
+    },
+  });
+};
+
+export const usePhantom = (id: string) => {
+  return useQuery({
+    queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS, id],
+    queryFn: async () => {
+      return fetch(`/api/phantoms/${encodeURI(id)}`)
+        .then((response) => response.json() as Promise<{ phantom: IPhantom }>)
+        .then((data) => data.phantom);
     },
   });
 };

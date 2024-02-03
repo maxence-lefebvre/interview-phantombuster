@@ -16,19 +16,19 @@ export const MainNav = ({
       {...props}
     >
       <Link
-        to="/"
+        to="/dashboard"
         className="text-sm font-medium transition-colors hover:text-primary"
       >
         Dashboard
       </Link>
       <Link
-        to="/"
+        to="/linkedin-leads"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         LinkedIn leads
       </Link>
       <Link
-        to="/"
+        to="/solutions"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Solutions
