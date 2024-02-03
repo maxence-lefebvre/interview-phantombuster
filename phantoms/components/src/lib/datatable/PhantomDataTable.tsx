@@ -31,7 +31,7 @@ export const PhantomDataTable = ({
       isLoading={isFetchingPhantoms}
       noDataMessage="No phantoms."
       dataTableFilter={
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <DataTableFilter
             placeholder="Search phantoms..."
             table={table}

@@ -8,7 +8,10 @@ export const MainNav = ({
 }: HTMLAttributes<HTMLElement>) => {
   return (
     <nav
-      className={cn('mx-6 flex items-center space-x-4 lg:space-x-6', className)}
+      className={cn(
+        'hidden mx-6 md:flex items-center space-x-4 lg:space-x-6',
+        className
+      )}
       {...props}
     >
       <a
