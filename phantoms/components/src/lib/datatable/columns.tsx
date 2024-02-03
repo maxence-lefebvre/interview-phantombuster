@@ -1,14 +1,15 @@
 import { createColumnHelper } from '@tanstack/react-table';
-import { addSeconds, format, formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
 
 import {
+  Countdown,
   DataTableColumnHeader,
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@phantombuster/design-system/components';
-import { IPhantom } from '@phantombuster/phantoms/types';
+import { getNextLaunchDate, IPhantom } from '@phantombuster/phantoms/types';
 
 import { PhantomDataTableActions } from './cells/PhantomDataTableActions';
 
@@ -38,22 +39,18 @@ export const columns = [
     id: 'nextLaunchIn',
     header: 'Next Launch',
     cell: ({ row }) => {
-      const value = row.original.nextLaunchIn;
+      const nextLaunch = getNextLaunchDate(row.original.nextLaunchIn);
 
-      if (!value) {
-        return null;
-      }
-
-      const nextLaunch = addSeconds(new Date(), value);
-
-      return (
+      return nextLaunch ? (
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger>{formatDistanceToNow(nextLaunch)}</TooltipTrigger>
+            <TooltipTrigger>
+              <Countdown targetDate={nextLaunch} />
+            </TooltipTrigger>
             <TooltipContent>{format(nextLaunch, 'Pp')}</TooltipContent>
           </Tooltip>
         </TooltipProvider>
-      );
+      ) : null;
     },
   }),
   columnHelper.display({

@@ -1,3 +1,5 @@
+import { addSeconds } from 'date-fns';
+
 export type IPhantoms = {
   id: string;
   name: string;
@@ -37,3 +39,18 @@ export type IPhantoms = {
 }[];
 
 export type IPhantom = IPhantoms[number];
+
+// Reference date for the next launch will be when this module is first imported.
+const referenceDate = new Date();
+
+export function getNextLaunchDate(nextLaunchIn: number): Date;
+export function getNextLaunchDate(
+  nextLaunchIn: number | undefined
+): Date | null;
+export function getNextLaunchDate(nextLaunchIn?: number): Date | null {
+  if (!nextLaunchIn) {
+    return null;
+  }
+
+  return addSeconds(referenceDate, nextLaunchIn);
+}

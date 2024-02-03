@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
+import '@total-typescript/ts-reset';
 
 import { mockServer } from '@phantombuster/kernel/mock-server';
 

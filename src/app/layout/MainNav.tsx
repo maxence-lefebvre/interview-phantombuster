@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'react';
+import { Link } from 'react-router-dom';
 
 import { cn } from '@phantombuster/design-system/core';
 
@@ -14,24 +15,24 @@ export const MainNav = ({
       )}
       {...props}
     >
-      <a
-        href="/"
+      <Link
+        to="/"
         className="text-sm font-medium transition-colors hover:text-primary"
       >
         Dashboard
-      </a>
-      <a
-        href="/"
+      </Link>
+      <Link
+        to="/"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         LinkedIn leads
-      </a>
-      <a
-        href="/"
+      </Link>
+      <Link
+        to="/"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Solutions
-      </a>
+      </Link>
     </nav>
   );
 };
