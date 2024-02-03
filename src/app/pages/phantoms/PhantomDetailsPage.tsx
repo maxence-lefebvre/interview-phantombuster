@@ -1,5 +1,6 @@
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { Fragment } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
 
 import {
@@ -28,6 +29,13 @@ export const PhantomDetailsPage = () => {
   // FIXME: There is probably a better way to handle the loading state here but it is getting late.
   return (
     <Fragment>
+      <Helmet>
+        {isLoading || !data ? (
+          <title>Loading Phantom Details</title>
+        ) : (
+          <title>{data.name}</title>
+        )}
+      </Helmet>
       <div className="flex flex-col gap-4 md:flex-row md:items-center">
         <Link to="/dashboard" className="text-primary">
           <Button variant="ghost" size="icon" title="Back to dashboard">
