@@ -17,13 +17,33 @@ export const usePhantoms = () => {
   });
 };
 
+export const useDuplicatePhantomMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
+    mutationFn: async (id: string) => {
+      return fetch(`/api/phantoms/${encodeURI(id)}/duplicate`, {
+        method: 'POST',
+      });
+    },
+    onSuccess: () => {
+      queryClient
+        .invalidateQueries({
+          queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
+        })
+        .catch((error) => console.error('Error invalidating query', error));
+    },
+  });
+};
+
 export const useDeletePhantomMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
     mutationFn: async (id: string) => {
-      return fetch(`/api/phantoms/${id}`, {
+      return fetch(`/api/phantoms/${encodeURI(id)}`, {
         method: 'DELETE',
       });
     },

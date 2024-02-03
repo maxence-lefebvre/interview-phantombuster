@@ -29,7 +29,8 @@
     "react-dom": "18.2.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -56,6 +57,7 @@
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "@vitejs/plugin-react": "^4.2.0",

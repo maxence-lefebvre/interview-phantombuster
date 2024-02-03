@@ -11,6 +11,7 @@ import {
 import { IPhantom } from '@phantombuster/phantoms/types';
 
 import { DeletePhantomMenuItem } from './menu-items/DeletePhantomMenuItem';
+import { DuplicatePhantomMenuItem } from './menu-items/DuplicatePhantomMenuItem';
 
 export type PhantomDataTableActionsProps = {
   row: Row<IPhantom>;
@@ -32,7 +33,7 @@ export const PhantomDataTableActions = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>Rename</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
+        <DuplicatePhantomMenuItem phantom={row.original} />
         <DeletePhantomMenuItem phantom={row.original} />
       </DropdownMenuContent>
     </DropdownMenu>
