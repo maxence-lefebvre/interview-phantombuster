@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 
+import { ThemeProvider } from '@phantombuster/design-system/components';
+
 import { DefaultErrorPage } from './layout/DefaultErrorPage';
 import { RootLayout } from './layout/RootLayout';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
@@ -25,8 +27,10 @@ const router = createHashRouter([
 
 export function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
