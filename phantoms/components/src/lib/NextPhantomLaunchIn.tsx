@@ -2,7 +2,7 @@ import { Countdown, Skeleton } from '@phantombuster/design-system/components';
 import { usePhantoms } from '@phantombuster/phantoms/state';
 import { getNextLaunchDate } from '@phantombuster/phantoms/types';
 
-export const NextPhantomLaunchIn = () => {
+export function NextPhantomLaunchIn() {
   const { data: phantoms, isLoading } = usePhantoms();
 
   if (isLoading || !phantoms) {
@@ -24,4 +24,4 @@ export const NextPhantomLaunchIn = () => {
       Next launch: <Countdown targetDate={nextLaunchDate} />
     </span>
   );
-};
+}

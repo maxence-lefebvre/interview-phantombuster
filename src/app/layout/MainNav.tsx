@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 import { cn } from '@phantombuster/design-system/core';
 
-export const MainNav = ({
+export function MainNav({
   className,
   ...props
-}: ComponentPropsWithoutRef<'nav'>) => {
+}: ComponentPropsWithoutRef<'nav'>) {
   return (
     <nav
       className={cn(
@@ -16,23 +16,23 @@ export const MainNav = ({
       {...props}
     >
       <Link
-        to="/dashboard"
         className="text-sm font-medium transition-colors hover:text-primary"
+        to="/dashboard"
       >
         Dashboard
       </Link>
       <Link
-        to="/linkedin-leads"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        to="/linkedin-leads"
       >
         LinkedIn leads
       </Link>
       <Link
-        to="/solutions"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+        to="/solutions"
       >
         Solutions
       </Link>
     </nav>
   );
-};
+}

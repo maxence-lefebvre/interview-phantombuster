@@ -8,7 +8,7 @@ import {
   PhantomDataTable,
 } from '@phantombuster/phantoms/components';
 
-export const DashboardPage = () => {
+export function DashboardPage() {
   return (
     <Fragment>
       <Helmet>
@@ -27,4 +27,4 @@ export const DashboardPage = () => {
       <PhantomDataTable />
     </Fragment>
   );
-};
+}

@@ -20,16 +20,14 @@ export type PhantomDataTableActionsProps = {
   row: Row<IPhantom>;
 };
 
-export const PhantomDataTableActions = ({
-  row,
-}: PhantomDataTableActionsProps) => {
+export function PhantomDataTableActions({ row }: PhantomDataTableActionsProps) {
   return (
     <Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="ghost"
             className="flex size-8 p-0 data-[state=open]:bg-muted"
+            variant="ghost"
           >
             <DotsHorizontalIcon className="size-4" />
             <span className="sr-only">Open menu</span>
@@ -45,4 +43,4 @@ export const PhantomDataTableActions = ({
       <RenamePhantomSheetContent phantom={row.original} />
     </Sheet>
   );
-};
+}

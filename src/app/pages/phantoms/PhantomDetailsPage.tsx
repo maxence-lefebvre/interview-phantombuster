@@ -16,7 +16,7 @@ import { getNextLaunchDate } from '@phantombuster/phantoms/types';
 
 import { PhantomDetailsCell } from './PhantomDetailsCell';
 
-export const PhantomDetailsPage = () => {
+export function PhantomDetailsPage() {
   const { id } = useParams();
   if (!id) {
     throw new Error('No id provided');
@@ -37,8 +37,8 @@ export const PhantomDetailsPage = () => {
         )}
       </Helmet>
       <div className="flex flex-col gap-4 md:flex-row md:items-center">
-        <Link to="/dashboard" className="text-primary">
-          <Button variant="ghost" size="icon" title="Back to dashboard">
+        <Link className="text-primary" to="/dashboard">
+          <Button size="icon" title="Back to dashboard" variant="ghost">
             <ArrowLeftIcon className="size-4" />
           </Button>
         </Link>
@@ -76,4 +76,4 @@ export const PhantomDetailsPage = () => {
       </Table>
     </Fragment>
   );
-};
+}

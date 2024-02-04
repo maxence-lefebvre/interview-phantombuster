@@ -1,7 +1,7 @@
 import { Skeleton } from '@phantombuster/design-system/components';
 import { usePhantoms } from '@phantombuster/phantoms/state';
 
-export const PhantomCount = () => {
+export function PhantomCount() {
   const { data: phantoms, isLoading } = usePhantoms();
 
   if (isLoading || !phantoms) {
@@ -22,4 +22,4 @@ export const PhantomCount = () => {
       Start with your first Phantom!
     </span>
   );
-};
+}

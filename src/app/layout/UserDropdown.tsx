@@ -14,18 +14,18 @@ import {
 
 import avatar from './assets/avatar.jpg';
 
-export const UserDropdown = () => {
+export function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative size-8 rounded-full">
+        <Button className="relative size-8 rounded-full" variant="ghost">
           <Avatar className="size-8">
-            <AvatarImage src={avatar} alt="@phantombuster" />
+            <AvatarImage alt="@phantombuster" src={avatar} />
             <AvatarFallback>PB</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent align="end" className="w-56" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">Zuul</p>
@@ -46,4 +46,4 @@ export const UserDropdown = () => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}

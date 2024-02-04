@@ -30,9 +30,9 @@ export function DataTableColumnVisibility<TData>({
           .map((column) => {
             return (
               <DropdownMenuCheckboxItem
-                key={column.id}
-                className="capitalize"
                 checked={column.getIsVisible()}
+                className="capitalize"
+                key={column.id}
                 onCheckedChange={(value) => column.toggleVisibility(value)}
               >
                 {column.id}

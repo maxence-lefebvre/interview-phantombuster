@@ -8,9 +8,7 @@ export type DeletePhantomMenuItemProps = {
   phantom: Pick<IPhantom, 'id'>;
 };
 
-export const DeletePhantomMenuItem = ({
-  phantom,
-}: DeletePhantomMenuItemProps) => {
+export function DeletePhantomMenuItem({ phantom }: DeletePhantomMenuItemProps) {
   const { mutate } = useDeletePhantomMutation();
 
   const onClickDelete = useCallback(
@@ -19,4 +17,4 @@ export const DeletePhantomMenuItem = ({
   );
 
   return <DropdownMenuItem onClick={onClickDelete}>Delete</DropdownMenuItem>;
-};
+}

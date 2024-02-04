@@ -3,7 +3,7 @@ import {
   SheetTrigger,
 } from '@phantombuster/design-system/components';
 
-export const RenamePhantomMenuItem = () => {
+export function RenamePhantomMenuItem() {
   return (
     <SheetTrigger asChild>
       <DropdownMenuItem>
@@ -11,4 +11,4 @@ export const RenamePhantomMenuItem = () => {
       </DropdownMenuItem>
     </SheetTrigger>
   );
-};
+}

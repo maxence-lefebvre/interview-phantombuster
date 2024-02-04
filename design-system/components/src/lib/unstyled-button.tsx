@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef } from 'react';
 
 export type UnstyledButtonProps = ComponentPropsWithoutRef<'button'>;
 
-export const UnstyledButton = ({ children, ...props }: UnstyledButtonProps) => {
+export function UnstyledButton({ children, ...props }: UnstyledButtonProps) {
   return (
     <button
       css={css`
@@ -14,4 +14,4 @@ export const UnstyledButton = ({ children, ...props }: UnstyledButtonProps) => {
       {children}
     </button>
   );
-};
+}

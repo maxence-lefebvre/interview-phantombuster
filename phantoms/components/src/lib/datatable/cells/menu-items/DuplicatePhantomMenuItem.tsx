@@ -8,9 +8,9 @@ export type DuplicatePhantomMenuItemProps = {
   phantom: Pick<IPhantom, 'id'>;
 };
 
-export const DuplicatePhantomMenuItem = ({
+export function DuplicatePhantomMenuItem({
   phantom,
-}: DuplicatePhantomMenuItemProps) => {
+}: DuplicatePhantomMenuItemProps) {
   const { mutate } = useDuplicatePhantomMutation();
 
   const onClickDuplicate = useCallback(
@@ -21,4 +21,4 @@ export const DuplicatePhantomMenuItem = ({
   return (
     <DropdownMenuItem onClick={onClickDuplicate}>Make a copy</DropdownMenuItem>
   );
-};
+}
