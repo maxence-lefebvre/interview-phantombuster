@@ -49,7 +49,7 @@ export function RenamePhantomSheetContent({
     (values: FormSchema) => {
       return mutate({ id: phantom.id, name: values.name });
     },
-    [mutate, phantom.id]
+    [mutate, phantom.id],
   );
 
   return (
@@ -78,6 +78,7 @@ export function RenamePhantomSheetContent({
                     <Input
                       className="w-full"
                       placeholder="Fill your phantom name"
+                      data-testid="rename-phantom-input"
                       {...field}
                     />
                   </FormControl>
@@ -95,7 +96,9 @@ export function RenamePhantomSheetContent({
               <Button variant="secondary">Cancel</Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit" data-testid="rename-phantom-submit">
+                Save changes
+              </Button>
             </SheetClose>
           </SheetFooter>
         </form>

@@ -8,7 +8,7 @@ import { phantomsSeed } from './data/seeds/phantoms';
 
 const MIRAGE_DB_CACHE_KEY = 'mirage-db' as const;
 
-export const mockServer = ({ environment = 'development' } = {}) => {
+export const mockServer = ({ environment = process.env.NODE_ENV } = {}) => {
   const server = createServer({
     environment,
 
@@ -21,6 +21,10 @@ export const mockServer = ({ environment = 'development' } = {}) => {
     },
 
     seeds(server) {
+      if (environment === 'test') {
+        return;
+      }
+
       const localCache = localStorage.getItem(MIRAGE_DB_CACHE_KEY);
 
       // Load local cache if it exists, else load seed data.
@@ -97,7 +101,7 @@ export const mockServer = ({ environment = 'development' } = {}) => {
     if (!['get', 'head'].includes(verb.toLowerCase())) {
       localStorage.setItem(
         MIRAGE_DB_CACHE_KEY,
-        JSON.stringify(server.db.dump())
+        JSON.stringify(server.db.dump()),
       );
     }
 

@@ -27,7 +27,9 @@ export function PhantomDataTableActions({ row }: PhantomDataTableActionsProps) {
         <DropdownMenuTrigger asChild>
           <Button
             className="flex size-8 p-0 data-[state=open]:bg-muted"
+            data-testid="phantom-actions-menu"
             variant="ghost"
+            aria-label="Open menu"
           >
             <DotsHorizontalIcon className="size-4" />
             <span className="sr-only">Open menu</span>
