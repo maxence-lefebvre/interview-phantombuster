@@ -8,7 +8,7 @@ import { App } from './app/app';
 import './index.css';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 
 mockServer();
@@ -16,5 +16,5 @@ mockServer();
 root.render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );

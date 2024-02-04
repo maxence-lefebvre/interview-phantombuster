@@ -5,7 +5,7 @@ export const zPhantom = z.object({
   id: z.string(),
   name: z.string(),
   script: z.string(),
-  nextLaunchIn: z.number().optional(),
+  nextLaunchIn: z.number().int().gt(0).optional(),
   manifest: z.object({
     tags: z.object({
       categories: z.array(z.string()),

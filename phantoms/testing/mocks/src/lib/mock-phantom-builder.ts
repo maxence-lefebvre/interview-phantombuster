@@ -31,6 +31,8 @@ export class MockPhantomBuilder<
   private constructor(initialValues?: PartialDeep<TPhantom>) {
     this.properties = {
       ...generateMock(zPhantom),
+      // FIXME: Auto-generated value is somehow causing Countdown to fail.
+      nextLaunchIn: undefined,
       ...initialValues,
     } as TPhantom;
   }
