@@ -34,7 +34,7 @@ export function CategoriesSelectFilter<TData>({
       table.getColumn(columnId)?.setFilterValue(nextValue ?? '');
       onChangeFilter?.(nextValue);
     },
-    [table, columnId, onChangeFilter]
+    [table, columnId, onChangeFilter],
   );
 
   const onClickClear = useCallback(() => {
@@ -58,10 +58,13 @@ export function CategoriesSelectFilter<TData>({
   return (
     <div className="flex items-center gap-2">
       <Select onValueChange={onSelectValueChange} value={value}>
-        <SelectTrigger className="w-[180px] justify-between">
+        <SelectTrigger
+          className="w-[180px] justify-between"
+          data-testid="select-category-trigger"
+        >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent data-testid="select-category-list">
           {Array.from(categories.values()).map((category) => (
             <SelectItem key={category} value={category}>
               <span className="capitalize">{category}</span>
@@ -74,6 +77,7 @@ export function CategoriesSelectFilter<TData>({
         onClick={onClickClear}
         size="icon"
         variant="outline"
+        data-testid="clear-category-filter"
       >
         <Cross1Icon className="size-4" />
       </Button>
