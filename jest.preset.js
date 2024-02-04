@@ -1,3 +1,6 @@
 const nxPreset = require('@nx/jest/preset').default;
 
-module.exports = { ...nxPreset };
+/**
+ * @type {import('@jest/types').Config.ProjectConfig}
+ * */
+module.exports = { ...nxPreset, testEnvironment: 'jsdom' };
