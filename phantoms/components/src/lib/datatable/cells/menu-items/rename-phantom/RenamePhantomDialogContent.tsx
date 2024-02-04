@@ -33,9 +33,9 @@ export type RenamePhantomSheetContentProps = {
   phantom: Pick<IPhantom, 'id' | 'name'>;
 };
 
-export const RenamePhantomSheetContent = ({
+export function RenamePhantomSheetContent({
   phantom,
-}: RenamePhantomSheetContentProps) => {
+}: RenamePhantomSheetContentProps) {
   const { mutate } = useRenamePhantomMutation();
 
   const renamePhantomForm = useForm<FormSchema>({
@@ -56,8 +56,8 @@ export const RenamePhantomSheetContent = ({
     <SheetContent className="w-full max-w-full md:w-1/2">
       <Form {...renamePhantomForm}>
         <form
-          onSubmit={renamePhantomForm.handleSubmit(onSubmit)}
           className="space-y-8"
+          onSubmit={renamePhantomForm.handleSubmit(onSubmit)}
         >
           <SheetHeader>
             <SheetTitle>Rename phantom</SheetTitle>
@@ -83,7 +83,7 @@ export const RenamePhantomSheetContent = ({
                   </FormControl>
                   <FormDescription>
                     We recommend that you include the linked vendor (e.g,
-                    "LinkedIn") in the name.
+                    &quot;LinkedIn&quot;) in the name.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -102,4 +102,4 @@ export const RenamePhantomSheetContent = ({
       </Form>
     </SheetContent>
   );
-};
+}

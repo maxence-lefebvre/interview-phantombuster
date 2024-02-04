@@ -20,9 +20,9 @@ export const columns = [
     ),
     cell: ({ row, getValue }) => (
       <Link
+        className="flex items-center gap-4"
         target="_blank"
         to={`/phantoms/${row.original.id}`}
-        className="flex items-center gap-4"
       >
         <ExternalLinkIcon className="size-4 flex-none" />
         {getValue()}
@@ -40,7 +40,7 @@ export const columns = [
     ),
     cell: ({ getValue }) => (
       <span className="flex items-center gap-4">
-        <Button variant="outline" size="icon" title="Launch now!">
+        <Button size="icon" title="Launch now!" variant="outline">
           <PlayIcon className="size-4" />
         </Button>
         {getValue()}

@@ -5,7 +5,7 @@ import { Toaster } from '@phantombuster/design-system/components';
 
 import { Navbar } from './Navbar';
 
-export const RootLayout = () => {
+export function RootLayout() {
   return (
     <Fragment>
       <div className="flex flex-col">
@@ -19,4 +19,4 @@ export const RootLayout = () => {
       <Toaster />
     </Fragment>
   );
-};
+}

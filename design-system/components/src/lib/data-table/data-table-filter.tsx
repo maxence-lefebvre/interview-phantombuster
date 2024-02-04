@@ -30,10 +30,10 @@ export function DataTableFilter<TData>({
 
   return (
     <Input
+      className="max-w-sm"
+      onChange={onChange}
       placeholder={placeholder}
       value={value ?? ''}
-      onChange={onChange}
-      className="max-w-sm"
     />
   );
 }

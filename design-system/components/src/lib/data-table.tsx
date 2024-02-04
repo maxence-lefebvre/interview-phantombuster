@@ -57,8 +57,8 @@ export function DataTable<TData>({
             {isLoading ? (
               <TableRow>
                 <TableCell
-                  colSpan={table.getAllColumns().length}
                   className="py-4"
+                  colSpan={table.getAllColumns().length}
                 >
                   {/*
                    * FIXME: Skeleton makes it look like we are adding a row when deleting one also...
@@ -71,8 +71,8 @@ export function DataTable<TData>({
             ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  key={row.id}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

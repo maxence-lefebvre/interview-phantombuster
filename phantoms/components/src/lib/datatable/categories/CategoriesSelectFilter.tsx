@@ -57,7 +57,7 @@ export function CategoriesSelectFilter<TData>({
 
   return (
     <div className="flex items-center gap-2">
-      <Select value={value} onValueChange={onSelectValueChange}>
+      <Select onValueChange={onSelectValueChange} value={value}>
         <SelectTrigger className="w-[180px] justify-between">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
@@ -71,9 +71,9 @@ export function CategoriesSelectFilter<TData>({
       </Select>
       <Button
         disabled={!value}
-        variant="outline"
         onClick={onClickClear}
         size="icon"
+        variant="outline"
       >
         <Cross1Icon className="size-4" />
       </Button>

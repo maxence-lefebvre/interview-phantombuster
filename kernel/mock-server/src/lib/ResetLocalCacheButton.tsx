@@ -6,7 +6,7 @@ import { Button } from '@phantombuster/design-system/components';
 
 import { resetLocalStorageCache } from './local-storage-cache';
 
-export const ResetLocalCacheButton = () => {
+export function ResetLocalCacheButton() {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
@@ -25,10 +25,10 @@ export const ResetLocalCacheButton = () => {
   return (
     <Button
       disabled={isPending}
-      variant="outline"
       onClick={onClickResetLocalStorageCache}
       size="icon"
       title="Reset local storage cache"
+      variant="outline"
     >
       {isPending ? (
         <ReloadIcon className="mr-2 size-4 animate-spin" />
@@ -37,4 +37,4 @@ export const ResetLocalCacheButton = () => {
       )}
     </Button>
   );
-};
+}

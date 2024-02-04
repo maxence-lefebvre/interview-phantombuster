@@ -15,7 +15,7 @@ export const Navbar = memo(function Navbar() {
     <div className="flex h-16 items-center px-4">
       <Link to="/">
         <UnstyledButton>
-          <img src={logo} alt="the logo of phantombuster: a cute ghost" />
+          <img alt="the logo of phantombuster: a cute ghost" src={logo} />
         </UnstyledButton>
       </Link>
       <MainNav className="mx-6" />

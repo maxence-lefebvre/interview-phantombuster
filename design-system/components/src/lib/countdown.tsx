@@ -13,7 +13,7 @@ export type CountdownProps = {
   targetDate: Date;
 };
 
-export const Countdown = ({ targetDate }: CountdownProps) => {
+export function Countdown({ targetDate }: CountdownProps) {
   const [{ days, hours, minutes, seconds }, timeLeft] =
     useCountdown(targetDate);
 
@@ -36,4 +36,4 @@ export const Countdown = ({ targetDate }: CountdownProps) => {
       </Tooltip>
     </TooltipProvider>
   );
-};
+}

@@ -11,9 +11,7 @@ export type CopyPhantomIdMenuItemProps = {
   phantom: Pick<IPhantom, 'id'>;
 };
 
-export const CopyPhantomIdMenuItem = ({
-  phantom,
-}: CopyPhantomIdMenuItemProps) => {
+export function CopyPhantomIdMenuItem({ phantom }: CopyPhantomIdMenuItemProps) {
   const { toast } = useToast();
   const { copy } = useClipboard();
 
@@ -26,4 +24,4 @@ export const CopyPhantomIdMenuItem = ({
   }, [copy, toast, phantom.id]);
 
   return <DropdownMenuItem onClick={onClickCopy}>Copy id</DropdownMenuItem>;
-};
+}

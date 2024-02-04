@@ -32,10 +32,10 @@ export function DataTablePagination<TData>({
         <div className="flex items-center space-x-2">
           <p className="text-sm font-medium">Rows per page</p>
           <Select
-            value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
             }}
+            value={`${table.getState().pagination.pageSize}`}
           >
             <SelectTrigger className="h-8 w-[70px]">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
@@ -56,37 +56,37 @@ export function DataTablePagination<TData>({
           </span>
           <div className="flex items-center gap-4 md:gap-0 md:space-x-2">
             <Button
-              variant="outline"
               className="hidden size-8 p-0 lg:flex"
-              onClick={() => table.setPageIndex(0)}
               disabled={!table.getCanPreviousPage()}
+              onClick={() => table.setPageIndex(0)}
+              variant="outline"
             >
               <span className="sr-only">Go to first page</span>
               <DoubleArrowLeftIcon className="size-4" />
             </Button>
             <Button
-              variant="outline"
               className="size-8 p-0"
-              onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
+              onClick={() => table.previousPage()}
+              variant="outline"
             >
               <span className="sr-only">Go to previous page</span>
               <ChevronLeftIcon className="size-4" />
             </Button>
             <Button
-              variant="outline"
               className="size-8 p-0"
-              onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
+              onClick={() => table.nextPage()}
+              variant="outline"
             >
               <span className="sr-only">Go to next page</span>
               <ChevronRightIcon className="size-4" />
             </Button>
             <Button
-              variant="outline"
               className="hidden size-8 p-0 lg:flex"
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
               disabled={!table.getCanNextPage()}
+              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+              variant="outline"
             >
               <span className="sr-only">Go to last page</span>
               <DoubleArrowRightIcon className="size-4" />

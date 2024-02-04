@@ -20,9 +20,9 @@ export type FilterSearchState = {
   category: string;
 };
 
-export const PhantomDataTable = ({
+export function PhantomDataTable({
   ...props
-}: ComponentPropsWithoutRef<'div'>) => {
+}: ComponentPropsWithoutRef<'div'>) {
   const { data: phantoms } = usePhantoms();
   const isFetchingPhantoms = useIsFetchingPhantoms();
   const [urlState, setUrlState] = useUrlState<FilterSearchState>();
@@ -49,28 +49,28 @@ export const PhantomDataTable = ({
 
   return (
     <DataTable
-      table={table}
-      isLoading={isFetchingPhantoms}
-      noDataMessage="No phantoms."
       dataTableFilter={
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <DataTableFilter
+            columnId="name"
             placeholder="Search phantoms..."
             table={table}
-            columnId="name"
           />
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
             <DataTableColumnVisibility table={table} />
             <CategoriesSelectFilter
-              table={table}
               columnId="categories"
               onChangeFilter={onChangeCategoryFilter}
+              table={table}
             />
           </div>
         </div>
       }
       dataTablePagination={<DataTablePagination table={table} />}
+      isLoading={isFetchingPhantoms}
+      noDataMessage="No phantoms."
+      table={table}
       {...props}
     />
   );
-};
+}

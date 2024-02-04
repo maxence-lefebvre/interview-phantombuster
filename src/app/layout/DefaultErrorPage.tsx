@@ -1,7 +1,7 @@
 import { useRouteError } from 'react-router-dom';
 import { z } from 'zod';
 
-export const DefaultErrorPage = () => {
+export function DefaultErrorPage() {
   const error = z
     .object({
       statusText: z.string().optional(),
@@ -20,4 +20,4 @@ export const DefaultErrorPage = () => {
       </p>
     </div>
   );
-};
+}
