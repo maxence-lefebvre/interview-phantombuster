@@ -92,7 +92,12 @@
       "env": {
         "jest/globals": true
       },
-      "extends": ["plugin:jest/recommended", "plugin:jest/style"],
+      "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest/style",
+        "plugin:jest-dom/recommended",
+        "plugin:testing-library/react"
+      ],
       "rules": {}
     }
   ]

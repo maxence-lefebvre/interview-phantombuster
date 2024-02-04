@@ -51,7 +51,7 @@ const referenceDate = new Date();
 
 export function getNextLaunchDate(nextLaunchIn: number): Date;
 export function getNextLaunchDate(
-  nextLaunchIn: number | undefined
+  nextLaunchIn: number | undefined,
 ): Date | null;
 export function getNextLaunchDate(nextLaunchIn?: number): Date | null {
   return nextLaunchIn ? addSeconds(referenceDate, nextLaunchIn) : null;

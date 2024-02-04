@@ -27,6 +27,9 @@
         "phantoms/components/src/index.ts"
       ],
       "@phantombuster/phantoms/state": ["phantoms/state/src/index.ts"],
+      "@phantombuster/phantoms/testing/mocks": [
+        "phantoms/testing/mocks/src/index.ts"
+      ],
       "@phantombuster/phantoms/types": ["phantoms/types/src/index.ts"]
     }
   },
