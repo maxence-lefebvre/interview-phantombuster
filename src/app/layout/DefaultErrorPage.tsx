@@ -1,11 +1,14 @@
 import { useRouteError } from 'react-router-dom';
+import { z } from 'zod';
 
 export const DefaultErrorPage = () => {
-  // FIXME: use zod to cast unknown to Error
-  const error = useRouteError() as {
-    statusText?: string;
-    message?: string;
-  };
+  const error = z
+    .object({
+      statusText: z.string().optional(),
+      message: z.string().optional(),
+    })
+    .parse(useRouteError());
+
   console.error(error);
 
   return (
