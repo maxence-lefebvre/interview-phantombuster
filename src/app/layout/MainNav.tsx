@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { cn } from '@phantombuster/design-system/core';
@@ -6,7 +6,7 @@ import { cn } from '@phantombuster/design-system/core';
 export const MainNav = ({
   className,
   ...props
-}: HTMLAttributes<HTMLElement>) => {
+}: ComponentPropsWithoutRef<'nav'>) => {
   return (
     <nav
       className={cn(

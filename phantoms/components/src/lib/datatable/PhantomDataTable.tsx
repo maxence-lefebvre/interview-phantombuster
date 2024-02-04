@@ -1,5 +1,5 @@
 import useUrlState from '@ahooksjs/use-url-state';
-import { HTMLAttributes, useCallback } from 'react';
+import { ComponentPropsWithoutRef, useCallback } from 'react';
 
 import {
   DataTable,
@@ -22,7 +22,7 @@ export type FilterSearchState = {
 
 export const PhantomDataTable = ({
   ...props
-}: HTMLAttributes<HTMLDivElement>) => {
+}: ComponentPropsWithoutRef<'div'>) => {
   const { data: phantoms } = usePhantoms();
   const isFetchingPhantoms = useIsFetchingPhantoms();
   const [urlState, setUrlState] = useUrlState<FilterSearchState>();

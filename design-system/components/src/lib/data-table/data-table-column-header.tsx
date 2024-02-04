@@ -6,7 +6,7 @@ import {
   EyeNoneIcon,
 } from '@radix-ui/react-icons';
 import { Column } from '@tanstack/react-table';
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 import { cn } from '@phantombuster/design-system/core';
 
@@ -20,7 +20,7 @@ import {
 } from '../../ui/dropdown-menu';
 
 interface DataTableColumnHeaderProps<TData, TValue>
-  extends HTMLAttributes<HTMLDivElement> {
+  extends ComponentPropsWithoutRef<'div'> {
   column: Column<TData, TValue>;
   title: string;
 }

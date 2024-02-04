@@ -1,5 +1,5 @@
 import { flexRender, Table as ReactTable } from '@tanstack/react-table';
-import { HTMLAttributes, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import { cn } from '@phantombuster/design-system/core';
 
@@ -13,7 +13,7 @@ import {
   TableRow,
 } from '../ui/table';
 
-interface DataTableProps<TData> extends HTMLAttributes<HTMLDivElement> {
+interface DataTableProps<TData> extends ComponentPropsWithoutRef<'div'> {
   table: ReactTable<TData>;
   noDataMessage?: string;
   isLoading?: boolean;

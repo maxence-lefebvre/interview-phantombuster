@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
-export type UnstyledButtonProps = HTMLAttributes<HTMLButtonElement>;
+export type UnstyledButtonProps = ComponentPropsWithoutRef<'button'>;
 
 export const UnstyledButton = ({ children, ...props }: UnstyledButtonProps) => {
   return (
