@@ -14,7 +14,8 @@ export type CountdownProps = {
 };
 
 export const Countdown = ({ targetDate }: CountdownProps) => {
-  const [{ days, hours, minutes, seconds }] = useCountdown(targetDate);
+  const [{ days, hours, minutes, seconds }, timeLeft] =
+    useCountdown(targetDate);
 
   const countdown = [
     days && `${days}d`,
@@ -29,7 +30,7 @@ export const Countdown = ({ targetDate }: CountdownProps) => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>
-          <span>{countdown}</span>
+          <span>{timeLeft > 0 ? countdown : 'In Progress'}</span>
         </TooltipTrigger>
         <TooltipContent>{format(targetDate, 'Pp')}</TooltipContent>
       </Tooltip>

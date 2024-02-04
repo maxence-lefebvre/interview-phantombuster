@@ -21,7 +21,7 @@ export const NextPhantomLaunchIn = () => {
 
   return (
     <span className="text-sm font-medium text-gray-500">
-      Next launch in <Countdown targetDate={nextLaunchDate} />
+      Next launch: <Countdown targetDate={nextLaunchDate} />
     </span>
   );
 };
