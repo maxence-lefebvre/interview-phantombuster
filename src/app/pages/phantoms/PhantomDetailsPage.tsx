@@ -6,15 +6,15 @@ import { Link, useParams } from 'react-router-dom';
 import {
   Button,
   Countdown,
-  Skeleton,
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableRow,
 } from '@phantombuster/design-system/components';
 import { usePhantom } from '@phantombuster/phantoms/state';
 import { getNextLaunchDate } from '@phantombuster/phantoms/types';
+
+import { PhantomDetailsCell } from './PhantomDetailsCell';
 
 export const PhantomDetailsPage = () => {
   const { id } = useParams();
@@ -24,9 +24,9 @@ export const PhantomDetailsPage = () => {
 
   const { data, isLoading } = usePhantom(id);
 
+  const showSkeleton = isLoading || !data;
   const nextLaunchDate = getNextLaunchDate(data?.nextLaunchIn);
 
-  // FIXME: There is probably a better way to handle the loading state here but it is getting late.
   return (
     <Fragment>
       <Helmet>
@@ -44,49 +44,33 @@ export const PhantomDetailsPage = () => {
         </Link>
         <h2 className="text-3xl font-bold tracking-tight">Phantom Details</h2>
       </div>
-      <Table className="md:w-1/4">
+      <Table className="md:w-1/2">
         <TableBody>
           {(['name', 'script', 'launchType'] as const).map((key) => (
             <TableRow key={key}>
-              <TableHead>{key}</TableHead>
-              <TableCell>
-                {isLoading || !data ? (
-                  <Skeleton className="h-4 w-[250px]" />
-                ) : (
-                  data[key]
-                )}
-              </TableCell>
+              <TableHead className="capitalize">{key}</TableHead>
+              <PhantomDetailsCell showSkeleton={showSkeleton}>
+                {data?.[key] ?? null}
+              </PhantomDetailsCell>
             </TableRow>
           ))}
           <TableRow>
             <TableHead>Launch frequency</TableHead>
-            <TableCell>
-              {isLoading || !data ? (
-                <Skeleton className="h-4 w-[250px]" />
-              ) : (
-                data.repeatedLaunchTimes?.simplePreset ?? null
-              )}
-            </TableCell>
+            <PhantomDetailsCell showSkeleton={showSkeleton}>
+              {data?.repeatedLaunchTimes?.simplePreset ?? null}
+            </PhantomDetailsCell>
           </TableRow>
           <TableRow>
             <TableHead>Next Launch In</TableHead>
-            <TableCell>
-              {isLoading || !data ? (
-                <Skeleton className="h-4 w-[250px]" />
-              ) : (
-                nextLaunchDate && <Countdown targetDate={nextLaunchDate} />
-              )}
-            </TableCell>
+            <PhantomDetailsCell showSkeleton={showSkeleton}>
+              {!!nextLaunchDate && <Countdown targetDate={nextLaunchDate} />}
+            </PhantomDetailsCell>
           </TableRow>
           <TableRow>
             <TableHead>Categories</TableHead>
-            <TableCell>
-              {isLoading || !data ? (
-                <Skeleton className="h-4 w-[250px]" />
-              ) : (
-                data.manifest.tags.categories.join(', ')
-              )}
-            </TableCell>
+            <PhantomDetailsCell showSkeleton={showSkeleton}>
+              {data?.manifest.tags.categories.join(', ') ?? null}
+            </PhantomDetailsCell>
           </TableRow>
         </TableBody>
       </Table>
