@@ -1,5 +1,6 @@
 import { createServer, Model, Response, RestSerializer } from 'miragejs';
 import { v4 as uuid } from 'uuid';
+import { z } from 'zod';
 
 import { IPhantom } from '@phantombuster/phantoms/types';
 
@@ -48,8 +49,9 @@ export const mockServer = ({ environment = 'development' } = {}) => {
           return new Response(400);
         }
 
-        const name = (JSON.parse(request.requestBody) as { name?: string })
-          .name;
+        const { name } = z
+          .object({ name: z.string().optional() })
+          .parse(JSON.parse(request.requestBody));
 
         if (!name) {
           return new Response(400);

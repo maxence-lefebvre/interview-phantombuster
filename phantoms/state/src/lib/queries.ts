@@ -4,8 +4,9 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+import { z } from 'zod';
 
-import { IPhantom } from '@phantombuster/phantoms/types';
+import { zPhantom } from '@phantombuster/phantoms/types';
 
 export const PHANTOMS_QUERY_KEYS = {
   PHANTOMS: 'phantoms',
@@ -20,9 +21,8 @@ export const usePhantoms = () => {
     queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
     queryFn: async () => {
       return fetch('/api/phantoms')
-        .then(
-          (response) => response.json() as Promise<{ phantoms: IPhantom[] }>
-        )
+        .then((response) => response.json())
+        .then((data) => z.object({ phantoms: zPhantom.array() }).parse(data))
         .then((data) => data.phantoms);
     },
   });
@@ -33,7 +33,8 @@ export const usePhantom = (id: string) => {
     queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS, id],
     queryFn: async () => {
       return fetch(`/api/phantoms/${encodeURI(id)}`)
-        .then((response) => response.json() as Promise<{ phantom: IPhantom }>)
+        .then((response) => response.json())
+        .then((data) => z.object({ phantom: zPhantom }).parse(data))
         .then((data) => data.phantom);
     },
   });

@@ -1,6 +1,7 @@
 import { Cross1Icon } from '@radix-ui/react-icons';
 import { Table } from '@tanstack/react-table';
 import { useCallback } from 'react';
+import { z } from 'zod';
 
 import {
   Button,
@@ -48,7 +49,11 @@ export function CategoriesSelectFilter<TData>({
     );
   }
 
-  const value = (table.getColumn(columnId)?.getFilterValue() as string) ?? '';
+  const value = z
+    .string()
+    .optional()
+    .catch('')
+    .parse(table.getColumn(columnId)?.getFilterValue());
 
   return (
     <div className="flex items-center gap-2">

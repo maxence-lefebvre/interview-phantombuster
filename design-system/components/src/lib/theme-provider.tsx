@@ -5,8 +5,11 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { z } from 'zod';
 
-type Theme = 'dark' | 'light' | 'system';
+const zTheme = z.enum(['dark', 'light', 'system']);
+
+type Theme = z.infer<typeof zTheme>;
 
 type ThemeProviderProps = {
   children: ReactNode;
@@ -32,8 +35,8 @@ export function ThemeProvider({
   storageKey = 'dark-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
+  const [theme, setTheme] = useState<Theme>(() =>
+    zTheme.catch(defaultTheme).parse(localStorage.getItem(storageKey))
   );
 
   useEffect(() => {

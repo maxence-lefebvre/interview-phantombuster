@@ -1,5 +1,6 @@
 import { Table } from '@tanstack/react-table';
 import { ChangeEvent, useCallback } from 'react';
+import { z } from 'zod';
 
 import { Input } from '../../ui/input';
 
@@ -21,10 +22,16 @@ export function DataTableFilter<TData>({
     [table, columnId]
   );
 
+  const value = z
+    .string()
+    .optional()
+    .catch('')
+    .parse(table.getColumn(columnId)?.getFilterValue());
+
   return (
     <Input
       placeholder={placeholder}
-      value={(table.getColumn(columnId)?.getFilterValue() as string) ?? ''}
+      value={value ?? ''}
       onChange={onChange}
       className="max-w-sm"
     />
