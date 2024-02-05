@@ -1,4 +1,4 @@
-import{r as B}from"./mantine-oZc0xwSX.js";/**
+import{r as B}from"./mantine-w6Kxx0RI.js";/**
    * table-core
    *
    * Copyright (c) TanStack
