@@ -18,9 +18,9 @@ describe('DefaultErrorPage', () => {
 
       render(<DefaultErrorPage />);
 
-      expect(screen.getByText('Internal Server Error')).toBeInTheDocument();
+      expect(screen.getByText(/Internal Server Error/i)).toBeInTheDocument();
       expect(
-        screen.queryByText('This wont be displayed'),
+        screen.queryByText(/This wont be displayed/i),
       ).not.toBeInTheDocument();
     });
 
@@ -31,7 +31,7 @@ describe('DefaultErrorPage', () => {
 
       render(<DefaultErrorPage />);
 
-      expect(screen.getByText('The server is on fire!')).toBeInTheDocument();
+      expect(screen.getByText(/The server is on fire!/i)).toBeInTheDocument();
     });
   });
 });
