@@ -25,6 +25,7 @@
       "@phantombuster/ext/react-router-dom/hooks": [
         "ext/react-router-dom/hooks/src/index.ts"
       ],
+      "@phantombuster/ext/react/hooks": ["ext/react/hooks/src/index.ts"],
       "@phantombuster/kernel/mock-server": ["kernel/mock-server/src/index.ts"],
       "@phantombuster/phantoms/components": [
         "phantoms/components/src/index.ts"

@@ -33,7 +33,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          mantine: ['@mantine/core', '@mantine/hooks'],
           table: ['@tanstack/react-table'],
           query: ['@tanstack/react-query'],
           radix: [
