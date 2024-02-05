@@ -10,11 +10,11 @@ export function DefaultErrorPage() {
     .parse(useRouteError());
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
+    <div className="flex h-screen w-screen flex-col items-center justify-center gap-8">
+      <h1 className="text-6xl">Oops!</h1>
+      <p className="text-3xl">Sorry, an unexpected error has occurred.</p>
       <p>
-        <i>{error.statusText || error.message}</i>
+        <i>Details: {error.statusText || error.message}</i>
       </p>
     </div>
   );
