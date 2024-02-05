@@ -1,4 +1,3 @@
-import { addSeconds } from 'date-fns';
 import { z } from 'zod';
 
 export const zPhantom = z.object({
@@ -45,14 +44,3 @@ export const zPhantom = z.object({
 export type IPhantom = z.infer<typeof zPhantom>;
 
 export type IPhantoms = IPhantom[];
-
-// Reference date for the next launch will be when this module is first imported.
-const referenceDate = new Date();
-
-export function getNextLaunchDate(nextLaunchIn: number): Date;
-export function getNextLaunchDate(
-  nextLaunchIn: number | undefined,
-): Date | null;
-export function getNextLaunchDate(nextLaunchIn?: number): Date | null {
-  return nextLaunchIn ? addSeconds(referenceDate, nextLaunchIn) : null;
-}
