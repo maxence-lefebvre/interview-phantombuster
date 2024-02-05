@@ -55,9 +55,16 @@ export function CategoriesSelectFilter<TData>({
     .catch('')
     .parse(table.getColumn(columnId)?.getFilterValue());
 
+  /*
+   * Note: A bug in radix-ui forces us to use a key on the Select component.
+   * This is because the Select component does not re-render when the value changes.
+   * When clearing the filter, the Select component does not update the value back to placeholder.
+   *
+   * @see https://github.com/radix-ui/primitives/issues/1569
+   */
   return (
     <div className="flex items-center gap-2">
-      <Select onValueChange={onSelectValueChange} value={value}>
+      <Select key={value} onValueChange={onSelectValueChange} value={value}>
         <SelectTrigger
           className="w-[180px] justify-between"
           data-testid="select-category-trigger"
