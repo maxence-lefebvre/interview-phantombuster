@@ -9,14 +9,15 @@ export function NextPhantomLaunchIn() {
     return <Skeleton className="h-4 w-[250px]" />;
   }
 
-  const nextLaunchIn = Math.min(
-    ...phantoms.map((phantom) => phantom.nextLaunchIn).filter(Boolean)
-  );
+  const nextLaunchIns = phantoms
+    .map((phantom) => phantom.nextLaunchIn)
+    .filter(Boolean);
 
-  if (nextLaunchIn === Infinity) {
+  if (nextLaunchIns.length === 0) {
     return <span className="text-sm font-medium text-gray-500">Idle</span>;
   }
 
+  const nextLaunchIn = Math.min(...nextLaunchIns);
   const nextLaunchDate = getNextLaunchDate(nextLaunchIn);
 
   return (
