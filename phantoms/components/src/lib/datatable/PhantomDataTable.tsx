@@ -1,4 +1,3 @@
-import useUrlState from '@ahooksjs/use-url-state';
 import { ComponentPropsWithoutRef, useCallback } from 'react';
 
 import {
@@ -8,6 +7,7 @@ import {
   DataTablePagination,
   useDataTable,
 } from '@phantombuster/design-system/components';
+import { useUrlState } from '@phantombuster/ext/react-router-dom/hooks';
 import {
   useIsFetchingPhantoms,
   usePhantoms,
@@ -16,25 +16,21 @@ import {
 import { CategoriesSelectFilter } from './categories/CategoriesSelectFilter';
 import { columns } from './columns';
 
-export type FilterSearchState = {
-  category: string;
-};
-
 export function PhantomDataTable({
   ...props
 }: ComponentPropsWithoutRef<'div'>) {
   const { data: phantoms } = usePhantoms();
   const isFetchingPhantoms = useIsFetchingPhantoms();
-  const [urlState, setUrlState] = useUrlState<FilterSearchState>();
+  const [categoryFilter, setCategoryFilter] = useUrlState('category');
 
   const table = useDataTable({
     columns,
     data: phantoms ?? [],
-    ...(urlState.category && {
+    ...(categoryFilter && {
       initialColumnFilters: [
         {
           id: 'categories',
-          value: urlState.category,
+          value: categoryFilter,
         },
       ],
     }),
@@ -42,9 +38,9 @@ export function PhantomDataTable({
 
   const onChangeCategoryFilter = useCallback(
     (value?: string | null) => {
-      setUrlState({ category: value ?? undefined });
+      setCategoryFilter(value ?? undefined);
     },
-    [setUrlState]
+    [setCategoryFilter],
   );
 
   return (
