@@ -83,5 +83,5 @@
       "defaultConfiguration": "production"
     }
   },
-  "tags": []
+  "tags": ["type:ui"]
 }
