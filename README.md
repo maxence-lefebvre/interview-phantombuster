@@ -1,5 +1,7 @@
 # Goal of the Test
 
+[![](https://img.shields.io/github/deployments/maxence-lefebvre/interview-phantombuster/github-pages?logo=github&label=github-pages)](https://maxence-lefebvre.github.io/interview-phantombuster/)
+
 Reproduce the Phantoms dashboard of a PhantomBuster user.
 
 # Functional instructions
