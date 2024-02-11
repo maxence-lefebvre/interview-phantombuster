@@ -42,5 +42,3 @@ export const zPhantom = z.object({
 });
 
 export type IPhantom = z.infer<typeof zPhantom>;
-
-export type IPhantoms = IPhantom[];
