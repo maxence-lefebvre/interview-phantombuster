@@ -1,19 +1,17 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, RenderOptions, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { ReactElement, ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { mockServer } from '@phantombuster/kernel/mock-server';
+import { PhantomsContextProvider } from '@phantombuster/phantoms/state';
 import { MockPhantomBuilder } from '@phantombuster/phantoms/testing/mocks';
 
 import { PhantomDataTable } from '../lib/datatable/PhantomDataTable';
 
-const queryClient = new QueryClient();
-
 const Wrapper = ({ children }: { children: ReactNode }) => (
   <BrowserRouter>
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <PhantomsContextProvider>{children}</PhantomsContextProvider>
   </BrowserRouter>
 );
 

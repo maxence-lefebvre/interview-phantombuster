@@ -1,131 +1,66 @@
-import {
-  useIsFetching,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import { z } from 'zod';
+import { useMemo } from 'react';
 
-import { zPhantom } from '@phantombuster/phantoms/types';
+import { useNonNullableContext } from '@phantombuster/ext/react/hooks';
 
-export const PHANTOMS_QUERY_KEYS = {
-  PHANTOMS: 'phantoms',
-};
-
-const handleInvalidateQueryError = (error: Error) => {
-  console.error('Error invalidating query', error);
-};
+import { PhantomsContext } from './phantoms.context';
 
 export const usePhantoms = () => {
-  return useQuery({
-    queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-    queryFn: async () => {
-      return fetch('/api/phantoms')
-        .then((response) => response.json())
-        .then((data) => z.object({ phantoms: zPhantom.array() }).parse(data))
-        .then((data) => data.phantoms);
-    },
-  });
+  const { phantoms, isLoading } = useNonNullableContext(PhantomsContext);
+  const values = useMemo(() => Object.values(phantoms), [phantoms]);
+
+  return { data: values, isLoading };
 };
 
 export const usePhantom = (id: string) => {
-  return useQuery({
-    queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS, id],
-    queryFn: async () => {
-      return fetch(`/api/phantoms/${encodeURI(id)}`)
-        .then((response) => response.json())
-        .then((data) => z.object({ phantom: zPhantom }).parse(data))
-        .then((data) => data.phantom);
-    },
-  });
+  const { phantoms, isLoading } = useNonNullableContext(PhantomsContext);
+
+  return { data: phantoms[id], isLoading };
 };
 
 export const usePhantomCategories = () => {
-  const phantomsQuery = usePhantoms();
+  const { data: phantoms, isLoading } = usePhantoms();
 
-  if (!phantomsQuery.data) {
-    return {
-      ...phantomsQuery,
-      data: new Set<string>(),
-    };
-  }
+  const categories = useMemo(
+    () =>
+      phantoms.reduce((acc, phantom) => {
+        phantom.manifest.tags.categories.forEach((category) => {
+          acc.add(category);
+        });
 
-  return {
-    ...phantomsQuery,
-    data: new Set(
-      phantomsQuery.data.flatMap((phantom) => phantom.manifest.tags.categories)
-    ),
-  };
+        return acc;
+      }, new Set<string>()),
+    [phantoms],
+  );
+
+  return { data: categories, isLoading };
 };
 
 export const useIsFetchingPhantoms = () => {
-  return (
-    useIsFetching({
-      queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-    }) > 0
-  );
+  const { isLoading } = useNonNullableContext(PhantomsContext);
+
+  return isLoading;
 };
 
 export const useRenamePhantomMutation = () => {
-  const queryClient = useQueryClient();
+  const { renamePhantom } = useNonNullableContext(PhantomsContext);
 
-  return useMutation({
-    mutationKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-    mutationFn: async ({ id, name }: { id: string; name: string }) => {
-      return fetch(`/api/phantoms/${encodeURI(id)}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name }),
-      });
-    },
-    onSuccess: () => {
-      queryClient
-        .invalidateQueries({
-          queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-        })
-        .catch(handleInvalidateQueryError);
-    },
-  });
+  return {
+    mutate: renamePhantom,
+  };
 };
 
 export const useDuplicatePhantomMutation = () => {
-  const queryClient = useQueryClient();
+  const { duplicatePhantom } = useNonNullableContext(PhantomsContext);
 
-  return useMutation({
-    mutationKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-    mutationFn: async (id: string) => {
-      return fetch(`/api/phantoms/${encodeURI(id)}/duplicate`, {
-        method: 'POST',
-      });
-    },
-    onSuccess: () => {
-      queryClient
-        .invalidateQueries({
-          queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-        })
-        .catch(handleInvalidateQueryError);
-    },
-  });
+  return {
+    mutate: duplicatePhantom,
+  };
 };
 
 export const useDeletePhantomMutation = () => {
-  const queryClient = useQueryClient();
+  const { deletePhantom } = useNonNullableContext(PhantomsContext);
 
-  return useMutation({
-    mutationKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-    mutationFn: async (id: string) => {
-      return fetch(`/api/phantoms/${encodeURI(id)}`, {
-        method: 'DELETE',
-      });
-    },
-    onSuccess: () => {
-      queryClient
-        .invalidateQueries({
-          queryKey: [PHANTOMS_QUERY_KEYS.PHANTOMS],
-        })
-        .catch(handleInvalidateQueryError);
-    },
-  });
+  return {
+    mutate: deletePhantom,
+  };
 };

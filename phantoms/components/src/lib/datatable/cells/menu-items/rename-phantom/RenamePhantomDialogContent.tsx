@@ -47,7 +47,7 @@ export function RenamePhantomSheetContent({
 
   const onSubmit = useCallback(
     (values: FormSchema) => {
-      return mutate({ id: phantom.id, name: values.name });
+      return mutate(phantom.id, values.name);
     },
     [mutate, phantom.id],
   );

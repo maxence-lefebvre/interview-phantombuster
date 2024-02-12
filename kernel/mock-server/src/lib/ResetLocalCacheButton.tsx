@@ -1,36 +1,26 @@
 import { ReloadIcon, TrashIcon } from '@radix-ui/react-icons';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useCallback } from 'react';
 
 import { Button } from '@phantombuster/design-system/components';
-
-import { resetLocalStorageCache } from './local-storage-cache';
+import { useNonNullableContext } from '@phantombuster/ext/react/hooks';
+import { PhantomsContext } from '@phantombuster/phantoms/state';
 
 export function ResetLocalCacheButton() {
-  const queryClient = useQueryClient();
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: resetLocalStorageCache,
-    onSuccess: () => {
-      queryClient
-        .invalidateQueries()
-        .catch((error) => console.error('Failed to invalidate queries', error));
-    },
-  });
+  const { resetPhantoms, isLoading } = useNonNullableContext(PhantomsContext);
 
   const onClickResetLocalStorageCache = useCallback(() => {
-    mutate();
-  }, [mutate]);
+    resetPhantoms();
+  }, [resetPhantoms]);
 
   return (
     <Button
-      disabled={isPending}
+      disabled={isLoading}
       onClick={onClickResetLocalStorageCache}
       size="icon"
       title="Reset local storage cache"
       variant="outline"
     >
-      {isPending ? (
+      {isLoading ? (
         <ReloadIcon className="mr-2 size-4 animate-spin" />
       ) : (
         <TrashIcon className="size-4" />

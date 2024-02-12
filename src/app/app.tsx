@@ -1,14 +1,12 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import { ThemeProvider } from '@phantombuster/design-system/components';
+import { PhantomsContextProvider } from '@phantombuster/phantoms/state';
 
 import { DefaultErrorPage } from './layout/DefaultErrorPage';
 import { RootLayout } from './layout/RootLayout';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
 import { PhantomDetailsPage } from './pages/phantoms/PhantomDetailsPage';
-
-const queryClient = new QueryClient();
 
 /**
  * Using the `HashRouter` because the app will be deployed on GitHub Pages.
@@ -37,9 +35,9 @@ const router = createHashRouter([
 export function App() {
   return (
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
+      <PhantomsContextProvider>
         <RouterProvider router={router} />
-      </QueryClientProvider>
+      </PhantomsContextProvider>
     </ThemeProvider>
   );
 }
